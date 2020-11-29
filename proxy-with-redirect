@@ -1,6 +1,6 @@
 server {
 
-    server_name aibydo.com;
+    server_name yourwebsite.com;
 
     location / {
         proxy_set_header X-Real-IP $remote_addr;
@@ -20,19 +20,19 @@ server {
 
     listen [::]:443 ssl ipv6only=on;
     listen 443 ssl;
-    ssl_certificate /etc/letsencrypt/live/aibydo.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/aibydo.com/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/yourwebsite.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/yourwebsite.com/privkey.pem;
     include /etc/letsencrypt/options-ssl-nginx.conf;
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 }
 
 server {
 	
-    if ($host = aibydo.com) {
+    if ($host = yourwebsite.com) {
         return 301 https://$host$request_uri;
     }
     listen 80;
     listen [::]:80;
-    server_name aibydo.com;
+    server_name yourwebsite.com;
     return 404; 
 }
